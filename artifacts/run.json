@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "scope": "Synthetic HTML; no browser, model, network or attack. Source capture is audit evidence only.",
+  "parser": "Python html.parser",
+  "dependencies": {
+    "beautifulsoup4": "4.14.3",
+    "soupsieve": "2.2.1",
+    "typing_extensions": "4.16.0"
+  },
+  "method": "BeautifulSoup(html, 'html.parser').get_text(separator=' ', strip=True)",
+  "fixture_count": 14,
+  "rows": [
+    {
+      "id": "ordinary",
+      "placement": "Ordinary div",
+      "captures": {
+        "text_only": {
+          "text": "Product: notebook. NOTE-MARKER"
+        },
+        "source_linked": {
+          "text": "Product: notebook. NOTE-MARKER",
+          "source_html": "<!doctype html><html><head></head><body><p>Product: notebook.</p><div>NOTE-MARKER</div></body></html>",
+          "source_sha256": "effa770bae9248a9a56f76d85626715f5950f873c8f43301e07130ed7372095b"
+        }
+      },
+      "marker_in_extracted_text": true
+    },
+    {
+      "id": "hidden_attribute",
+      "placement": "hidden attribute",
+      "captures": {
+        "text_only": {
+          "text": "Product: notebook. NOTE-MARKER"
+        },
+        "source_linked": {
+          "text": "Product: notebook. NOTE-MARKER",
+          "source_html": "<!doctype html><html><head></head><body><p>Product: notebook.</p><div hidden>NOTE-MARKER</div></body></html>",
+          "source_sha256": "9940fdf8700ddbd88ff55e3526243ad4f468deb7e1e40d1db82dd5544a32abe6"
+        }
+      },
+      "marker_in_extracted_text": true
+    },
+    {
+      "id": "nested_hidden",
+      "placement": "hidden ancestor",
+      "captures": {
+        "text_only": {
+          "text": "Product: notebook. NOTE-MARKER"
+        },
+        "source_linked": {
+          "text": "Product: notebook. NOTE-MARKER",
+          "source_html": "<!doctype html><html><head></head><body><p>Product: notebook.</p><section hidden><div>NOTE-MARKER</div></section></body></html>",
+          "source_sha256": "5d1e3493d62feea59647321057fa6d4e789116525a27e9b526d15d2e706196d0"
+        }
+      },
+      "marker_in_extracted_text": true
+    },
+    {
+      "id": "inline_display_none",
+      "placement": "inline display:none",
+      "captures": {
+        "text_only": {
+          "text": "Product: notebook. NOTE-MARKER"
+        },
+        "source_linked": {
+          "text": "Product: notebook. NOTE-MARKER",
+          "source_html": "<!doctype html><html><head></head><body><p>Product: notebook.</p><div style=\"display:none\">NOTE-MARKER</div></body></html>",
+          "source_sha256": "3ab85e02817c439d4f3d496fa009a166389377b5a1ecfaceb9a15926e3213863"
+        }
+      },
+      "marker_in_extracted_text": true
+    },
+    {
+      "id": "css_class",
+      "placement": "class with display:none rule",
+      "captures": {
+        "text_only": {
+          "text": "Product: notebook. NOTE-MARKER"
+        },
+        "source_linked": {
+          "text": "Product: notebook. NOTE-MARKER",
+          "source_html": "<!doctype html><html><head><style>.concealed{display:none}</style></head><body><p>Product: notebook.</p><div class=\"concealed\">NOTE-MARKER</div></body></html>",
+          "source_sha256": "63148612ebad88bd13992203c87f8c4758adc61c0adde77f5a1bce0070abfd77"
+        }
+      },
+      "marker_in_extracted_text": true
+    },
+    {
+      "id": "comment",
+      "placement": "HTML comment",
+      "captures": {
+        "text_only": {
+          "text": "Product: notebook."
+        },
+        "source_linked": {
+          "text": "Product: notebook.",
+          "source_html": "<!doctype html><html><head></head><body><p>Product: notebook.</p><!-- NOTE-MARKER --></body></html>",
+          "source_sha256": "60dc3c1be6a42d64f23c1ce8f02de2a5a8f46fe9419679900f412e9a4339771c"
+        }
+      },
+      "marker_in_extracted_text": false
+    },
+    {
+      "id": "meta",
+      "placement": "meta content attribute",
+      "captures": {
+        "text_only": {
+          "text": "Product: notebook."
+        },
+        "source_linked": {
+          "text": "Product: notebook.",
+          "source_html": "<!doctype html><html><head><meta name=\"description\" content=\"NOTE-MARKER\"></head><body><p>Product: notebook.</p></body></html>",
+          "source_sha256": "a038e80b4bd2a49797e09cae9a76971a05f717895c5be990c67623b15f4691e9"
+        }
+      },
+      "marker_in_extracted_text": false
+    },
+    {
+      "id": "script",
+      "placement": "script data",
+      "captures": {
+        "text_only": {
+          "text": "Product: notebook."
+        },
+        "source_linked": {
+          "text": "Product: notebook.",
+          "source_html": "<!doctype html><html><head></head><body><p>Product: notebook.</p><script type=\"application/json\">{\"note\":\"NOTE-MARKER\"}</script></body></html>",
+          "source_sha256": "41f8ceaad8bf85aa12abf59b8c6752a87a7df19ad4b48c50ddaeef08b0d28508"
+        }
+      },
+      "marker_in_extracted_text": false
+    },
+    {
+      "id": "style",
+      "placement": "style text",
+      "captures": {
+        "text_only": {
+          "text": "Product: notebook."
+        },
+        "source_linked": {
+          "text": "Product: notebook.",
+          "source_html": "<!doctype html><html><head><style>/* NOTE-MARKER */</style></head><body><p>Product: notebook.</p></body></html>",
+          "source_sha256": "689fc3551ebf0f2f976066525e605d0ff781834ce82089a5f81bfd4f4b66b824"
+        }
+      },
+      "marker_in_extracted_text": false
+    },
+    {
+      "id": "template",
+      "placement": "template text",
+      "captures": {
+        "text_only": {
+          "text": "Product: notebook."
+        },
+        "source_linked": {
+          "text": "Product: notebook.",
+          "source_html": "<!doctype html><html><head></head><body><p>Product: notebook.</p><template><p>NOTE-MARKER</p></template></body></html>",
+          "source_sha256": "8bc6b08cb8688579faf3588cc525f483f5b4b9a9bbdda705445ed4fab64dd484"
+        }
+      },
+      "marker_in_extracted_text": false
+    },
+    {
+      "id": "entity",
+      "placement": "numeric character reference",
+      "captures": {
+        "text_only": {
+          "text": "Product: notebook. NOTE-MARKER"
+        },
+        "source_linked": {
+          "text": "Product: notebook. NOTE-MARKER",
+          "source_html": "<!doctype html><html><head></head><body><p>Product: notebook.</p><div>NOTE&#45;MARKER</div></body></html>",
+          "source_sha256": "56a4e207a80b11a95b995bb65cac0be16282875e9265159a0619a9e121643672"
+        }
+      },
+      "marker_in_extracted_text": true
+    },
+    {
+      "id": "aria_hidden",
+      "placement": "aria-hidden attribute, not visual hiding",
+      "captures": {
+        "text_only": {
+          "text": "Product: notebook. NOTE-MARKER"
+        },
+        "source_linked": {
+          "text": "Product: notebook. NOTE-MARKER",
+          "source_html": "<!doctype html><html><head></head><body><p>Product: notebook.</p><div aria-hidden=\"true\">NOTE-MARKER</div></body></html>",
+          "source_sha256": "dcf5a9f1f63b1972cda98ab1a74b135f1a38f37576f43b60ac186db063efa347"
+        }
+      },
+      "marker_in_extracted_text": true
+    },
+    {
+      "id": "hidden_false",
+      "placement": "literal hidden=\"false\" attribute",
+      "captures": {
+        "text_only": {
+          "text": "Product: notebook. NOTE-MARKER"
+        },
+        "source_linked": {
+          "text": "Product: notebook. NOTE-MARKER",
+          "source_html": "<!doctype html><html><head></head><body><p>Product: notebook.</p><div hidden=\"false\">NOTE-MARKER</div></body></html>",
+          "source_sha256": "bd29470b23ddc5c2234921e0a7c056223cad3a64c68351eb8822d75f08f5283d"
+        }
+      },
+      "marker_in_extracted_text": true
+    },
+    {
+      "id": "benign_no_marker",
+      "placement": "ordinary document without marker",
+      "captures": {
+        "text_only": {
+          "text": "Product: notebook."
+        },
+        "source_linked": {
+          "text": "Product: notebook.",
+          "source_html": "<!doctype html><html><head></head><body><p>Product: notebook.</p></body></html>",
+          "source_sha256": "9f3b29db303ca3462a06a871e740791f2ae407f9c7b88c093934157f6eca47bb"
+        }
+      },
+      "marker_in_extracted_text": false
+    }
+  ],
+  "principal_pair": {
+    "ids": [
+      "ordinary",
+      "hidden_attribute"
+    ],
+    "text_only_equal": true,
+    "source_html_equal": false,
+    "source_hash_equal": false
+  }
+}
